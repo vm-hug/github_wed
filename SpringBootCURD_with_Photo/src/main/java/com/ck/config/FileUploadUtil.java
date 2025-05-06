@@ -1,4 +1,4 @@
-package com.ck.coman;
+package com.ck.config;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,18 +10,18 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class FileUploadUtil {
-    public static void saveFile(String uploadDir , String fileName, MultipartFile multipartFile) throws IOException {
+    public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
 
-        if(!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath); // Tạo thư mục nếu không tồn tại
         }
 
-        try (InputStream inputStream = multipartFile.getInputStream()){
+        try (InputStream inputStream = multipartFile.getInputStream()) {
             Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream , filePath , StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ioe) {
-            throw new IOException("Could not save image file: " + fileName , ioe);
+            throw new IOException("Could not save image file: " + fileName, ioe);
         }
     }
 }

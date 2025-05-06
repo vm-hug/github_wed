@@ -21,7 +21,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css">
-
     <!-- <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css"> -->
 
@@ -33,9 +32,92 @@
         <div class="whirly-loader"> </div>
     </div>
 
-    <div th:replace="fragments/header :: header"> </div>\
+    <div th:replace="~{fragments/header :: header}"></div>
     
-    
+    <div class="page-wrapper">
+        <div class="content">
+            <!-- Header Section -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h4>Category List</h4>
+                    <h6>Manage your categories</h6>
+                </div>
+                <div class="page-btn">
+                    <a th:href="@{/categories/add}" class="btn btn-added">
+                        <img th:src="@{image/plus.svg}" alt="img" class="me-1">
+                        Add New Category
+                    </a>
+                </div>
+            </div>
+
+            <!-- Filter and Search Section -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-top">
+                        <div class="search-set">
+                            <div class="search-path">
+                                <a class="btn btn-filter" id="filter_search">
+                                    <img src="image/filter.svg" alt="img">
+                                    <span><img src="image/closes.svg" alt="img"></span>
+                                </a>
+                            </div>
+                            <div class="search-input">
+                                <a class="btn btn-searchset"><img src="image/search-white.svg"
+                                        alt="img"></a>
+                            </div>
+                        </div>
+                        <div class="wordset">
+                            <ul>
+                                <li>
+                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="Export to PDF">
+                                        <img th:src="@{image/pdf.svg}" alt="img">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="Export to Excel">
+                                        <img th:src="@{image/excel.svg}" alt="img">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="Print">
+                                        <img th:src="@{image/printer.svg}" alt="img">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Category Table -->
+                    <div class="table-responsive">
+                        <table class="table datanew">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Category Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic Data from Controller -->
+                                <tr th:each="category : ${categories}">
+                                    <td th:text="${category.id}"></td>
+                                    <td th:text="${category.name}"></td>
+                                    <td>
+                                        <a class="me-3" th:href="@{/categories/edit/{id}(id=${category.id})}">
+                                            <img th:src="@{image/edit.svg}" alt="Edit">
+                                        </a>
+                                        <a class="confirm-text" th:href="@{/categories/delete/{id}(id=${category.id})}">
+                                            <img th:src="@{image/delete.svg}" alt="Delete">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="" th:src="@{/js/jquery-3.6.0.min.js}"></script>
 

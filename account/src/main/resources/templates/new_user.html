@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Management User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div align="center">
+    <h1>New User</h1>
+    <br/>
+    <form action="#" th:action="@{/saveUser}" th:object="${user}"
+          method="post" enctype="multipart/form-data">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>User Name :</td>
+                <td><input type="text" th:field="*{username}" placeholder="User name"></td>
+            </tr>
+            <tr>
+                <td>Email :</td>
+                <td><input type="text" th:field="*{email}" placeholder="email"></td>
+            </tr>
+            <tr>
+                <td>Phone :</td>
+                <td><input type="text" th:field="*{phone}" placeholder="phone"></td>
+            </tr>
+            <tr>
+                <td>Address :</td>
+                <td><input type="text" th:field="*{address}" placeholder="address"></td>
+            </tr>
+            <tr>
+                <td>Photo:</td>
+                <td><input type="file" name="image" accept="image/png , image/jpeg"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-primary">Save User</button></td>
+            </tr>
+        </table>
+    </form>
+    <a th:href="@{/users}">Back to Users</a>
+</div>
+</body>
+</html>

@@ -36,5 +36,12 @@
 
         <input type="submit" value="Update"/>
     </form:form>
+    <form:form 
+        method="POST" 
+        action="/products/deleteProduct/${product.productID}"
+        onsubmit="return confirm('Do you really want to delete this product?') ? true : false"
+        >
+        <input type="submit" value="Delete"/>
+    </form:form>
 </body>
 </html>
